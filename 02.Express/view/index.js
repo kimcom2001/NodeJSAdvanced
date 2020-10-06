@@ -8,7 +8,7 @@ exports.index = function(title, list, content, control) {
     <title>${title}</title>
 </head>
 <body>
-    <h1><a href ="/">웹 기술</a></h1>
+    <h1><a href="/">웹 기술</a></h1>
     ${list}
     <hr>
     <p>
