@@ -1,5 +1,2 @@
 # Nodejs-2020
-Node.js 강의
-
-오늘은 자바스크립트에 관하여 배웠습니다.
-자료형, 변수, 상수 등등
+Node.js Advanced 강의
