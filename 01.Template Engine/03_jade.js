@@ -6,7 +6,7 @@ const fs = require('fs');
 // 서버를 생성하고 실행합니다.
 http.createServer(function (request, response) {
     // JadePage.jade 파일을 읽습니다.
-    fs.readFile('03.jadePage.jade', 'utf8', function (error, data) {
+    fs.readFile('03_jadePage.jade', 'utf8', function (error, data) {
         // jade 모듈을 사용합니다.
         var fn = jade.compile(data);
 
