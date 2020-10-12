@@ -4,7 +4,7 @@ module.exports.mainForm = function(rows) { // row.name ? row.name: '몰라요'} 
         tableRow += `<tr>
                         <td>${row.sid}</td>
                         <td>${row.title}</td>
-                        <td>${row.name ? row.name: '몰라요'}</td>
+                        <td>${row.name ? row.name: '-----'}</td>
                         <td>${row.lyrics}</td>
                         <td>
                             <a href="/update/${row.sid}">수정</a>

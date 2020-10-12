@@ -21,7 +21,7 @@ module.exports = {
 
     getAllLists:     function(callback) {
         let conn = this.getConnection();
-        let sql = `SELECT girl_group.sid, girl_group.name, date_format(girl_group.debut, '%Y-%M-%D') AS debut FROM girl_group ORDER BY sid DESC LIMIT 10;`;
+        let sql = `SELECT girl_group.sid, girl_group.name, date_format(girl_group.debut, '%Y-%m-%d') AS debut FROM girl_group ORDER BY sid DESC LIMIT 10;`;
         conn.query(sql, (error, rows, fields) => {
             if (error)
                 console.log(error);
