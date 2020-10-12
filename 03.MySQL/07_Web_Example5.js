@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const fs = require('fs');
 const http = require('http');
-let info = fs.readFileSync('./mysql.json', 'utf8');
+let info = fs.readFileSync('./mysql.json', 'utf8'); // 비밀번호를 숨기기 위한 것
 let conInfo = JSON.parse(info);
 
 let conn = mysql.createConnection({
