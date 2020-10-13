@@ -12,7 +12,7 @@ let conn = mysql.createConnection({
 });
 
 function generateHash(something) {
-    // SHA Secure Hash Algorithm
+
     let shasum = crypto.createHash('sha256'); // sha256, sha512
     shasum.update(something);
     return shasum.digest('base64'); // hex, base64
@@ -29,13 +29,13 @@ conn.query(sql, uid, function(error, results, fields) {
         console.log(error);
     let result = results[0]
 
-    if (result === undefined) {
-        console.log(`Log in 실패: uid ${uid}이/가 없습니다.`);
+    if (result === undefined) { // sql에서 uid로 검색했기 때문에 undefined가 나오면 아이디가 없다는 것을 의미
+        console.log(`Login 실패: uid ${uid}이/가 없습니다.`);
     } else {
         if (result.pwd === pwdHash) {
             console.log('로그인 성공');
         } else {
-            console.log('Log in 실패: 패스워드가 다릅니다.');
+            console.log('Login 실패: 패스워드가 다릅니다.');
         }
     }
 });

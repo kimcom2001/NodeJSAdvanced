@@ -1,5 +1,5 @@
 module.exports.mainForm = function(rows) {
-    let tableRow = '';
+    let tableRow = ''; // [];으로 하나 '';로 하나 결과는 같다.
     for (let row of rows) {
         tableRow += `<tr>
                         <td style="padding: 10px;">${row.uid}</td>

@@ -12,7 +12,7 @@ let conn = mysql.createConnection({
 });
 
 function generateHash(something) {
-    // SHA Secure Hash Algorithm
+
     let shasum = crypto.createHash('sha256'); // sha256, sha512
     shasum.update(something);
     return shasum.digest('base64'); // hex, base64
@@ -31,7 +31,7 @@ conn.query(sql, uid, function(error, results, fields) {
     if (result.pwd === pwdHash) {
         console.log('로그인 성공');
     } else {
-        console.log('Log in 실패: 패스워드가 다릅니다.');
+        console.log('Login 실패: 패스워드가 다릅니다.');
     }
 });
 
