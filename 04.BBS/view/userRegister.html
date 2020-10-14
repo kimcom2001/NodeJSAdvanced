@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h3 style="text-align: center; margin-top: 25px;">회원 가입</h3>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <form action="/user/register" method="post">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><label for="uid">사용자 ID</label></td>
+                            <td><input tpye="text" name="uid" id="uid"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="pwd">비밀번호</label></td>
+                            <td><input tpye="password" name="pwd" id="pwd"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="pwd2">비밀번호 확인</label></td>
+                            <td><input tpye="password" name="pwd2" id="pwd2"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="uname">이름</label></td>
+                            <td><input tpye="text" name="uname" id="uname"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <input class="btn btn-primary" type="submit" value="제출">
+                                <input class="btn btn-secondary" type="submit" value="취소">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
