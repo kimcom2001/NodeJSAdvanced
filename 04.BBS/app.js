@@ -1,10 +1,11 @@
 const express = require('express');
-const fs = require('file-system')
+const fs = require('fs')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser'); // 상태 정보를 클라이언트에 저장
 const session = require('express-session'); // 상태 정보를 웹 서버에 저장
 const Filestore = require('session-file-store')(session);
 const uRouter = require('./userRouter');
+
 
 const app = express();
 
@@ -21,13 +22,17 @@ app.use(session({
     saveUninitialized: true,    // 세션이 세션 store에 저장되기 전에 uninialized된 상태로 만들어서 저장
     store: new Filestore({logFn: function(){}})
 }));
+
 app.use('/user', uRouter);
 
 app.get('/', (req, res) => {
-    fs.readFile('./view/index.html');
-    const view = require('./view/basic');
-    let html = view.test();
-    res.send(html)
+    res.redirect('/login');
+});
+
+app.get('/login', (req, res) => {
+    fs.readFile('./view/userLogin.html', 'utf8', (error, html) => {
+        res.send(html);
+    });
 });
 
 

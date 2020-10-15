@@ -1,0 +1,15 @@
+CREATE TABLE users(
+ NO INT UNSIGNED NOT NULL AUTO_INCREMENT,
+ `uid` VARCHAR(20) NOT NULL,
+ `pwd` CHAR(44) NOT NULL,
+ `uname` VARCHAR(20) NOT NULL,
+ `tel` VARCHAR(20),
+ `email` VARCHAR(40),
+ `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+ `isDeleted` INT DEFAULT 0,
+ `reply` VARCHAR(20) SET read_count = read_count +1 WHERE reply="1",
+ PRIMARY KEY (no)
+ ) AUTO_INCREMENT=1001;
+
+insert into users(uid, pwd, uname, tel, email)
+ VALUES(admin, 1234, 김영중, 01066554567, hoseo@naver.com);
