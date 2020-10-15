@@ -35,6 +35,12 @@ app.get('/login', (req, res) => {
     });
 });
 
+app.get('/main', (req, res) => {
+    fs.readFile('./view/userMain.html', 'utf8', (error, html) => {
+        res.send(html);
+    });
+});
+
 
 app.listen(3000, () => {
     console.log('Server Running at http://127.0.0.1:3000');
