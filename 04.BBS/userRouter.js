@@ -1,9 +1,9 @@
 const express = require('express');
 const ut = require('./util');
-const dm = require('./db/db-module');
+const dm = require('./db/db-Module');
 const alert = require('./view/alertMsg');
-
 const uRouter = express.Router();
+
 uRouter.get('/register', (req, res) => {
     const view = require('./view/userRegister');
     let html = view.registForm();
@@ -29,5 +29,25 @@ uRouter.post('/register', (req, res) => {
         });
     }
 });
+
+uRouter.get('/write', (req, res) => {
+    const view = require('./view/userWrite');
+    let html = view.writeForm();
+    res.send(html);
+});
+
+uRouter.post('/write', (req, res) => {
+    
+    let uid = req.session.uid;
+    let title = req.body.title;
+    let content = req.body.content;
+    let params = [uid, title, content];
+        dm.writeUser(params, () => {
+            res.redirect('/');
+    });
+});
+
+
+
 
 module.exports = uRouter;

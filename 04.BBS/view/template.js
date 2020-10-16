@@ -12,11 +12,6 @@ module.exports = {
     <script src="/jquery/jquery.min.js"></script>
     <script src="/popper/popper.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-    /* Make the image fully responsive */
-    .carousel-inner img {
-        width: 100%;
-        height: 100%;
-    }
 </style>
 </head>
 <body>
@@ -27,7 +22,10 @@ module.exports = {
         </a>
         <ul class="nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-home"></i>홈</a>
+                <a class="nav-link" href="#"><i class="fas fa-home"></i>&nbsp;홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">로그아웃</a>

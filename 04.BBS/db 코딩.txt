@@ -1,5 +1,17 @@
+CREATE TABLE bbs(
+ NO INT NOT NULL AUTO_INCREMENT,
+ `bid` VARCHAR(20) NOT NULL,
+ `title` CHAR(20) NOT NULL,
+ `content` VARCHAR(1000) NOT NULL,
+ `uid` VARCHAR(20) NOT NULL,
+ `modTime` VARCHAR(20),
+ `viewCount` VARCHAR(20),
+ `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+ `isDeleted` INT DEFAULT 0,
+ PRIMARY KEY (no)
+ ) AUTO_INCREMENT=1001;
+
 CREATE TABLE users(
- NO INT UNSIGNED NOT NULL AUTO_INCREMENT,
  `uid` VARCHAR(20) NOT NULL,
  `pwd` CHAR(44) NOT NULL,
  `uname` VARCHAR(20) NOT NULL,
@@ -7,9 +19,19 @@ CREATE TABLE users(
  `email` VARCHAR(40),
  `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
  `isDeleted` INT DEFAULT 0,
- `reply` VARCHAR(20) SET read_count = read_count +1 WHERE reply="1",
- PRIMARY KEY (no)
- ) AUTO_INCREMENT=1001;
+ PRIMARY KEY (uid)
+ );
+
+SELECT b.bid, b.uid, u.uname, b.title, b.content, b.modTime, b.viewCount
+  FROM bbs AS b
+  JOIN users AS u
+  ON b.uid=u.uid
+  WHERE u.isDeleted=0
+  ORDER BY b.bid DESC 
+  LIMIT 10;`
+
 
 insert into users(uid, pwd, uname, tel, email)
  VALUES(admin, 1234, 김영중, 01066554567, hoseo@naver.com);
+
+현재 시간으로 설정 : update bbs set(테이블명으로 추측) modTime = now() where bbs=1004;

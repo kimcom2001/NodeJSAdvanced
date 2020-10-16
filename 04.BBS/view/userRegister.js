@@ -2,19 +2,19 @@ const template = require('./template');
 
 module.exports.registForm = function () {
     return `
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <title>My BBS</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="/fontawesome-free-5.15.1-web/css/all.min.css">
-    <script src="/jquery/jquery.min.js"></script>
-    <script src="/popper/popper.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <title>My BBS</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="/fontawesome-free-5.15.1-web/css/all.min.css">
+        <script src="/jquery/jquery.min.js"></script>
+        <script src="/popper/popper.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
     <div class="container" style="margin-top: 90px;">
         <h3 style="text-align: center; margin-top: 25px;">회원 가입</h3>
         <hr>

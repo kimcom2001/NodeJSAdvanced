@@ -20,23 +20,6 @@ module.exports = {
     },
 
     // BBS DB
-    getBbsList:     function(callback) {
-        let conn = this.getConnection();
-        let sql = `SELECT b.bid, b.uid, u.uname, b.title, b.content, b.modTime, b.viewCount
-                    FROM bbs AS b
-                    JOIN users AS u
-                    ON b.uid=u.uid
-                    WHERE b.isDeleted=0
-                    ORDER BY b.bid DESC 
-                    LIMIT 10;`;
-        conn.query(sql, params, (error, fields) => {
-            if (error)
-                console.log(error);
-            callback();
-        });
-        conn.end();
-    },
-
     getBbsTotalCount:     function(callback) {
         let conn = this.getConnection();
         let sql = `SELECT count(*) FROM bbs where isDeleted=0;`;
@@ -44,6 +27,25 @@ module.exports = {
             if (error)
                 console.log(error);
             callback();
+        });
+        conn.end();
+    },
+    
+    getBbsList:     function(callback) {
+        let conn = this.getConnection();
+
+        let sql = `SELECT b.uid, b.title, u.uname, date_format(b.regDate, '%Y-%M-%D') AS regDate, b.viewCount
+        FROM bbs AS b
+        JOIN users AS u
+        ON b.uid=u.uid
+        WHERE u.isDeleted=0
+        ORDER BY b.bid DESC 
+        LIMIT 10;`;
+
+        conn.query(sql, (error, rows, fields) => {
+            if (error)
+                console.log(error);
+            callback(rows);
         });
         conn.end();
     },
@@ -58,5 +60,18 @@ module.exports = {
             callback();
         });
         conn.end();
-    }
+    },
+
+    writeUser:     function(params, callback) {
+        let conn = this.getConnection();
+        let sql = `insert into usersdata(title, content) values(?,?);`;
+        conn.query(sql, params, (error, fields) => {
+            if (error)
+                console.log(error);
+            callback();
+        });
+        conn.end();
+    },
+
+
 }

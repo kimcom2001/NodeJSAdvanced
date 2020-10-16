@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser'); // 상태 정보를 클라이언�
 const session = require('express-session'); // 상태 정보를 웹 서버에 저장
 const Filestore = require('session-file-store')(session);
 const uRouter = require('./userRouter');
-
-
+const bRouter = require('./bbsRouter');
 const app = express();
 
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
@@ -23,7 +22,8 @@ app.use(session({
     store: new Filestore({logFn: function(){}})
 }));
 
-app.use('/user', uRouter);
+app.use('/user', uRouter); // 여기서 시작함
+app.use('/bbs', bRouter); // 여기서 시작함
 
 app.get('/', (req, res) => {
     res.redirect('/login');
@@ -35,8 +35,8 @@ app.get('/login', (req, res) => {
     });
 });
 
-app.get('/main', (req, res) => {
-    fs.readFile('./view/userMain.html', 'utf8', (error, html) => {
+app.get('/write', (req, res) => {
+    fs.readFile('./view/userWrite.html', 'utf8', (error, html) => {
         res.send(html);
     });
 });
