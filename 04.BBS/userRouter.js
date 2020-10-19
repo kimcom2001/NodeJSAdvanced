@@ -57,6 +57,16 @@ uRouter.get('/list', (req, res) => {
     });
 }); 
 
+app.get('/delete/:uid', ut.isLoggedIn, (req, res) => {
+    if (req.params.uid === req.session.uid) { // 로그인한 사용자의 한에서 권한 부여
+        dm.deleteUser(req.params.uid, () => {
+            res.redirect('/');
+        });
+    } else {
+        let html = am.alertMsg(`삭제 권한이 없습니다.`, '/'); // 로그인은 이미 되어 있으므로 루트로 보내준다.
+        res.send(html);
+    }
+});
 
 
 module.exports = uRouter;

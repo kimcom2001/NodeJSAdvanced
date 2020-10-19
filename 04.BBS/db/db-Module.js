@@ -68,6 +68,17 @@ module.exports = {
         conn.end(params);
     },
 
+    getAllLists:     function(callback) {
+        let conn = this.getConnection();
+        let sql = `SELECT NO, title, DATE_FORMAT(regDate, '%Y.%m.%d') AS regDate, bid, viewCount, reply FROM lists;`;
+        conn.query(sql, (error, rows, fields) => {
+            if (error)
+                console.log(error);
+            callback(rows);
+        });
+        conn.end();
+    },
+
     writeUser:         function(params, callback) {
         let conn = this.getConnection();
         let sql = `insert into lists(bid, title, content, uid) values(?,?,?,?);`;
@@ -79,14 +90,14 @@ module.exports = {
         conn.end(params);
     },
 
-    getAllLists:     function(callback) {
+    deleteUser:     function(uid, callback) {
         let conn = this.getConnection();
-        let sql = `SELECT NO, title, DATE_FORMAT(regDate, '%Y.%m.%d') AS regDate, bid, viewCount, reply FROM lists;`;
-        conn.query(sql, (error, rows, fields) => {
+        let sql = `update list set isDeleted=1 where uid like ?;`;
+        conn.query(sql, uid, (error,  fields) => {
             if (error)
                 console.log(error);
-            callback(rows);
+            callback();
         });
         conn.end();
-    },
+    }
 }
