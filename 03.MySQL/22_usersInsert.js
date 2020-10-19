@@ -18,8 +18,8 @@ shasum.update('1234');
 let output = shasum.digest('base64');
 
 // values 뒤 괄호 안에 ?의 사이에 ''('?')를 붙이면 DB에 ?로 저장이 된다.
-let sql = `insert into users(uid, pwd, uname) values(?, ?, ?);`;
-let params = ['sylee', output, '이수연'];
+let sql = `insert into users(uid, pwd, uname, tel, email) values(?, ?, ?, ?, ?);`;
+let params = ['sylee', output, '이수연', '010-1111-2222', 'hoseo@hoseo.net'];
 conn.query(sql, params, function(error, fields) {
     if (error)
         console.log(error);
