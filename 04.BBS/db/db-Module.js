@@ -1,5 +1,5 @@
-const fs = require('fs');
 const mysql = require('mysql');
+const fs = require('fs');
 let info = fs.readFileSync('./mysql.json', 'utf8');
 let config = JSON.parse(info);
 
@@ -19,6 +19,17 @@ module.exports = {
         return conn;
     },
 
+    getUserInfo:    function(uid, callback) {
+        let conn = this.getConnection();
+        let sql = `SELECT * from users where uid like ?;`;
+        conn.query(sql, uid, (error, results, fields) => {
+            if (error)
+                console.log(error);
+            callback(results[0]); // 주의
+        });
+        conn.end();
+    },
+
     // BBS DB
     getBbsTotalCount:     function(callback) {
         let conn = this.getConnection();
@@ -34,13 +45,8 @@ module.exports = {
     getBbsList:     function(callback) {
         let conn = this.getConnection();
 
-        let sql = `SELECT b.uid, b.title, u.uname, date_format(b.regDate, '%Y-%M-%D') AS regDate, b.viewCount
-        FROM bbs AS b
-        JOIN users AS u
-        ON b.uid=u.uid
-        WHERE u.isDeleted=0
-        ORDER BY b.bid DESC 
-        LIMIT 10;`;
+        let sql = `SELECT NO, uid, uname, tel, email FROM users;
+        `;
 
         conn.query(sql, (error, rows, fields) => {
             if (error)
@@ -59,19 +65,28 @@ module.exports = {
                 console.log(error);
             callback();
         });
-        conn.end();
+        conn.end(params);
     },
 
-    writeUser:     function(params, callback) {
+    writeUser:         function(params, callback) {
         let conn = this.getConnection();
-        let sql = `insert into usersdata(title, content) values(?,?);`;
+        let sql = `insert into lists(bid, title, content, uid) values(?,?,?,?);`;
         conn.query(sql, params, (error, fields) => {
             if (error)
                 console.log(error);
             callback();
         });
-        conn.end();
+        conn.end(params);
     },
 
-
+    getAllLists:     function(callback) {
+        let conn = this.getConnection();
+        let sql = `SELECT NO, title, DATE_FORMAT(regDate, '%Y.%m.%d') AS regDate, bid, viewCount, reply FROM lists;`;
+        conn.query(sql, (error, rows, fields) => {
+            if (error)
+                console.log(error);
+            callback(rows);
+        });
+        conn.end();
+    },
 }

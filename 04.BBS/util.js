@@ -8,6 +8,7 @@ module.exports = {
         shasum.update(pwd);
         return shasum.digest('base64');  // hex, base64
     },
+
     isLoggedIn:     function(req, res, next) {
         if (!req.session.uid) {    
             res.redirect('/login');

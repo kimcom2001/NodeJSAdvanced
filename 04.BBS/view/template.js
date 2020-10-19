@@ -22,13 +22,13 @@ module.exports = {
         </a>
         <ul class="nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-home"></i>&nbsp;홈</a>
+                <a class="nav-link" href="/user/list"><i class="fas fa-home"></i>&nbsp;홈</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-edit"></i>&nbsp;새글</a>
+                <a class="nav-link" href="/user/write"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">로그아웃</a>
+                <a class="nav-link" href="/logout">로그아웃</a>
             </li>
         </ul>
         <div class="navbar-text fixed-right" id="weather">

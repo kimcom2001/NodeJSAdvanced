@@ -32,21 +32,30 @@ uRouter.post('/register', (req, res) => {
 
 uRouter.get('/write', (req, res) => {
     const view = require('./view/userWrite');
-    let html = view.writeForm();
+    let html = view.writeForm(req.session.uname);
     res.send(html);
 });
 
 uRouter.post('/write', (req, res) => {
     
+    let bid = req.body.bid;
     let uid = req.session.uid;
     let title = req.body.title;
     let content = req.body.content;
-    let params = [uid, title, content];
-        dm.writeUser(params, () => {
-            res.redirect('/');
+    let params = [bid, title, content, uid];
+    dm.writeUser(params, () => {
+        res.redirect('/');
     });
 });
 
+uRouter.get('/list', (req, res) => {
+
+    dm.getAllLists(rows => {
+        const view = require('./view/userList');
+        let html = view.listForm(req.session.uname, rows);
+        res.send(html);
+    });
+}); 
 
 
 

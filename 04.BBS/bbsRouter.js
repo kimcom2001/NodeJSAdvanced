@@ -9,7 +9,7 @@ bRouter.get('/list', (req, res) => {
 
     dm.getBbsList(rows => {
         const view = require('./view/bbsList');
-        let html = view.listForm(rows);
+        let html = view.listForm(req.session.uname, rows);
         res.send(html);
     });
 }); 
