@@ -26,27 +26,27 @@ module.exports.registForm = function () {
                     <table class="table table-borderless">
                         <tr>
                             <td><label for="uid">사용자 ID</label></td>
-                            <td><input tpye="text" name="uid" id="uid"></td>
+                            <td><input type="text" name="uid" id="uid"></td>
                         </tr>
                         <tr>
                             <td><label for="pwd">비밀번호</label></td>
-                            <td><input tpye="password" name="pwd" id="pwd"></td>
+                            <td><input type="password" name="pwd" id="pwd"></td>
                         </tr>
                         <tr>
                             <td><label for="pwd2">비밀번호 확인</label></td>
-                            <td><input tpye="password" name="pwd2" id="pwd2"></td>
+                            <td><input type="password" name="pwd2" id="pwd2"></td>
                         </tr>
                         <tr>
                             <td><label for="uname">이름</label></td>
-                            <td><input tpye="text" name="uname" id="uname"></td>
+                            <td><input type="text" name="uname" id="uname"></td>
                         </tr>
                         <tr>
                             <td><label for="tel">전화번호</label></td>
-                            <td><input tpye="text" name="tel" id="tel"></td>
+                            <td><input type="text" name="tel" id="tel"></td>
                         </tr>
                         <tr>
                             <td><label for="email">이메일</label></td>
-                            <td><input tpye="text" name="email" id="email"></td>
+                            <td><input type="text" name="email" id="email"></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center;">

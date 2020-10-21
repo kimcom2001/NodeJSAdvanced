@@ -1,15 +1,14 @@
-CREATE TABLE list(
- NO INT NOT NULL AUTO_INCREMENT,
- `bid` VARCHAR(20) NOT NULL,
- `title` CHAR(20) NOT NULL,
+CREATE TABLE bbs(
+ 
+ `bid` INT NOT NULL AUTO_INCREMENT,
+ `title` CHAR(100) NOT NULL,
  `content` VARCHAR(1000) NOT NULL,
  `uid` VARCHAR(20) NOT NULL,
- `modTime` VARCHAR(20),
- `viewCount` VARCHAR(20),
  `regDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
  `isDeleted` INT DEFAULT 0,
- PRIMARY KEY (no)
+ PRIMARY KEY (`bid`)
  ) AUTO_INCREMENT=1001;
+
 
 CREATE TABLE users(
  `uid` VARCHAR(20) NOT NULL,
@@ -22,13 +21,12 @@ CREATE TABLE users(
  PRIMARY KEY (uid)
  );
 
-SELECT b.bid, b.uid, u.uname, b.title, b.content, b.modTime, b.viewCount
+SELECT b.bid, b.uid, u.uname, b.title, b.content
   FROM bbs AS b
   JOIN users AS u
   ON b.uid=u.uid
-  WHERE u.isDeleted=0
-  ORDER BY b.bid DESC 
-  LIMIT 10;`
+  WHERE u.isDeleted=0;
+
 
 
 insert into users(uid, pwd, uname, tel, email)

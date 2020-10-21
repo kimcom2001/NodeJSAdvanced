@@ -10,6 +10,7 @@ module.exports = {
     },
 
     isLoggedIn:     function(req, res, next) {
+        
         if (!req.session.uid) {    
             res.redirect('/login');
         } else {

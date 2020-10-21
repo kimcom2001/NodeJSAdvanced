@@ -1,17 +1,9 @@
-const template = require('./template');
 
-module.exports.bbsListForm = function(uname, rows) {
-    let tableRow = [];
-    for (let row of rows) {
-        tableRow += `        
-                    <tr>
-                        <td style="text-align: center;">${row.bid}</td>
-                        <td><a href='/bbs/content/${row.bid}'>${row.title}</a></td>
-                        <td style="text-align: center;">${row.uname}</td>
-                        <td style="text-align: center;">${row.regDate}</td>
-                    </tr>`;
-    }
-    return `
+
+module.exports.contentForm = function(uname, bid, result) {
+
+        return`
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,6 +18,7 @@ module.exports.bbsListForm = function(uname, rows) {
 </style>
 </head>
 <body>
+    <div style="margin-top: 80px"></div>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="#">
             <img src="/img/hoseo.png" alt="호서직업능력개발원"
@@ -43,28 +36,38 @@ module.exports.bbsListForm = function(uname, rows) {
             </li>
         </ul>
         <div class="navbar-text fixed-right" id="weather">
-            ${uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class="fas fa-cloud-sun"></i> 20&deg;C
+            ${uname}님 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fas fa-cloud-sun"></i> 20&deg;C
         </div>
     </nav>
-    <div style="margin-top: 80px;"></div>
+    <form action="/user/content" method="get">
         <div class="container">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th style="width: 10%; text-align: center;">번호</th>
-                        <th style="width: 25%; text-align: center;">제목</th>
-                        <th style="width: 25%; text-align: center;">작성자</th>
-                        <th style="width: 15%; text-align: center;">날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${tableRow}
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-7">
+                    <h3>${result.title}</h3>
+                    <p><span>글번호: ${result.bid}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>날짜: ${result.regDate}</span></p>
+                </div>
+                <div class="col-3">
+                    <h3>${result.uname}</h3>
+                    <p><span>조회 10</span>&nbsp;&nbsp;<span>리플 10</span></p>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-8">
+                    <p>${result.content}</p>
+                </div>
+                <div class="col-2">
+                    <a href="/bbs/update/${result.bid}">수정</a>
+                    <a href="/bbs/delete/${result.bid}">삭제</a>
+                </div>
+            </div>
         </div>
-    </div>
-
-        ${template.footer()}
-    `;
+    </form>
+</body>
+</html>
+`;
 }

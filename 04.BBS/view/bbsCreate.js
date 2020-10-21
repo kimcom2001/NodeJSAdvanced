@@ -1,6 +1,6 @@
 const template = require('./template');
 
-module.exports.writeForm = function (uname) {
+module.exports.createForm = function (uname, uid) {
     return `
     <!DOCTYPE html>
     <html lang="ko">
@@ -22,15 +22,15 @@ module.exports.writeForm = function (uname) {
                     style="height: 40px; margin-left: 50px; margin-right: 100px;">
             </a>
             <ul class="nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/list"><i class="fas fa-home"></i>&nbsp;홈</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/write"><i class="fas fa-edit"></i>&nbsp;새글</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">로그아웃</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bbs/list/:page"><i class="fas fa-home"></i>&nbsp;홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">로그아웃</a>
+            </li>
             </ul>
             <div class="navbar-text fixed-right" id="weather">
                 ${uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
@@ -45,10 +45,9 @@ module.exports.writeForm = function (uname) {
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-                <form action="/user/write" method="post">
+                <form action="/bbs/create/${uid}" method="post">
+                    <input type="hidden" name="uid">
                     <div class="form-group"> 
-                        <label for="bid">작성자</label>
-                        <input type="text" class="form-control" id="bid" placeholder="작성자명" name="bid">
                         <label for="title">제목</label>
                         <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" name="title">
                     </div>

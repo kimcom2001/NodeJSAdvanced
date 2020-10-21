@@ -25,7 +25,7 @@ module.exports = {
                 <a class="nav-link" href="/user/list"><i class="fas fa-home"></i>&nbsp;홈</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/write"><i class="fas fa-edit"></i>&nbsp;새글</a>
+                <a class="nav-link" href="/user/create"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">로그아웃</a>

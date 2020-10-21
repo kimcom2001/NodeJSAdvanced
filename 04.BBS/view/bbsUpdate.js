@@ -1,16 +1,7 @@
 const template = require('./template');
 
-module.exports.bbsListForm = function(uname, rows) {
-    let tableRow = [];
-    for (let row of rows) {
-        tableRow += `        
-                    <tr>
-                        <td style="text-align: center;">${row.bid}</td>
-                        <td><a href='/bbs/content/${row.bid}'>${row.title}</a></td>
-                        <td style="text-align: center;">${row.uname}</td>
-                        <td style="text-align: center;">${row.regDate}</td>
-                    </tr>`;
-    }
+module.exports.updateForm = function(uid, result) {
+
     return `
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,28 +34,37 @@ module.exports.bbsListForm = function(uname, rows) {
             </li>
         </ul>
         <div class="navbar-text fixed-right" id="weather">
-            ${uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
+                ${result.uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
             <i class="fas fa-cloud-sun"></i> 20&deg;C
         </div>
     </nav>
-    <div style="margin-top: 80px;"></div>
-        <div class="container">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th style="width: 10%; text-align: center;">번호</th>
-                        <th style="width: 25%; text-align: center;">제목</th>
-                        <th style="width: 25%; text-align: center;">작성자</th>
-                        <th style="width: 15%; text-align: center;">날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${tableRow}
-                </tbody>
-            </table>
+    <div class="container">
+        <div>
+            <h3 style="text-align: center; margin-top: 80px;">게시글 작성</h3>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form action="/user/update/${uid}" method="post">
+                    <div class="form-group"> 
+                        <label for="bid">작성자</label>
+                        <input type="text" class="form-control" id="bid" name="bid" value="${result.bid}>
+                        <label for="title">제목</label>
+                        <input type="text" class="form-control" id="title" name="title" value="${result.title}>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">내용</label>
+                        <textarea class="form-control" rows="15" id="content" name="content" value="${result.content}></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="position: fixed; right: 270px; bottom: 180px;">작성</button>
+                </form>
+            </div>
+            <div class="col-2"></div>
         </div>
     </div>
 
-        ${template.footer()}
+
+    ${template.footer()}
     `;
 }
+

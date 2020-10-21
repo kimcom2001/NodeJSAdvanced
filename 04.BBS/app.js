@@ -7,6 +7,7 @@ const Filestore = require('session-file-store')(session);
 const uRouter = require('./userRouter');
 const bRouter = require('./bbsRouter');
 const dm = require('./db/db-Module');
+const am = require('./view/alertMsg');
 const ut = require('./util');
 const app = express();
 
@@ -51,7 +52,7 @@ app.post('/login', (req, res) => {
                 req.session.uname = result.uname; // {}님 반갑습니다를 위함.
                 console.log('로그인 성공');
                 req.session.save(function() {
-                    res.redirect('/user/list');
+                    res.redirect('/bbs/list/:page');
                 });
 
             } else {
