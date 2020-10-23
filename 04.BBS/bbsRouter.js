@@ -14,16 +14,35 @@ bRouter.get('/list/:page',  ut.isLoggedIn, (req, res) => {  // 리스트 목록 
     });
 });
 
+bRouter.post('/reply/:uid/bid/:bid', ut.isLoggedIn, (req, res) => {
+
+    let bid = parseInt(req.params.bid);
+    let uid = req.session.uid;
+    let content = req.body.content;
+    let isMine = (uid === req.body.uid) ? 1 : 0;
+    let params = [bid, uid, content, isMine];
+    dm.getCreateReply(params, () => {
+        dm.getReplyCount(bid, () => {
+        res.redirect(`/bbs/content/${bid}`)
+        });
+    });
+});
+
 bRouter.get('/content/:bid',  ut.isLoggedIn, (req, res) => {  // 리스트 내용 - 완료
 
-    let uid = req.session.uid
     let bid = parseInt(req.params.bid);
     dm.getBbsContent(bid, result => {
-        const view = require('./view/bbsContent');
-        let html = view.contentForm(req.session.uname, bid, result);
-        res.send(html);
+        dm.increaseViewCount(bid, () => {
+            dm.getReplyData(bid, reply => {
+                const view = require('./view/bbsContent');
+                let html = view.contentForm(req.session.uname, result, reply);
+                res.send(html);
+            });
+        });
     });
 }); 
+
+
 
 bRouter.get('/create/:uid', ut.isLoggedIn, (req, res) => {
 
@@ -39,33 +58,31 @@ bRouter.post('/create/:uid', ut.isLoggedIn, (req, res) => {
     let title = req.body.title;
     let content = req.body.content;
     let params = [title, content, uid];
-    dm.getCreateUser(params, () => {
-        res.redirect('/bbs/list/:uid');
+    dm.getCreateBbs(params, () => {
+        res.redirect('/bbs/list/:page');
     });
 });
 
-bRouter.get('/delete/:bid', ut.isLoggedIn, (req, res) => {
-    
+bRouter.get('/delete/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
+ 
     let bid = parseInt(req.params.bid);
-    console.log(req.params.uid);
-    console.log(req.session.uid);
     if (req.params.uid === req.session.uid) {
-        dm.deleteUser(bid, req.session.uid, () => {
+        dm.deleteBbs(bid, () => {
             res.redirect('/bbs/list/:page');
         });
     } else {
         let html = am.alertMsg(`삭제 권한이 없습니다.`, '/bbs/list/:page'); // 로그인은 이미 되어 있으므로 루트로 보내준다.
         res.send(html);
-        console.log(html)
     }
 });
 
-/* bRouter.get('/update/:uid', ut.isLoggedIn, (req, res) => {
-    let uid = req.params.uid;
+bRouter.get('/update/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
+    
+    let bid = parseInt(req.params.bid);
     if (req.params.uid === req.session.uid) { // 로그인한 사용자의 한에서 권한 부여
-        dm.getUserInfo(req.params.uid, (result) => {
+        dm.getBbsUpdateContent(bid, (result) => {
             const view = require('./view/bbsUpdate');
-            html = view.updateForm(req.prams.uid, result);
+            html = view.updateForm(req.params.uname, result);
             res.send(html);
         });
     } else {
@@ -74,15 +91,16 @@ bRouter.get('/delete/:bid', ut.isLoggedIn, (req, res) => {
     }
 });
 
-bRouter.post('/update', ut.isLoggedIn, (req, res) => {
-    let bid = req.body.bid;
+bRouter.post('/update/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
+  
+    let bid = parseInt(req.params.bid);
     let title = req.body.title;
     let content = req.body.content;
-    let params = [bid, title, content];
-        dm.updateUser(params, () => {
-            res.redirect('/');
+    let params = [title, content, bid];
+        dm.getUpdateBbs(params, () => {
+            res.redirect('/bbs/list/:page');
     });
-}); */
+});
 
 module.exports = bRouter;
 

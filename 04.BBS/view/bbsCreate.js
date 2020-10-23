@@ -22,15 +22,18 @@ module.exports.createForm = function (uname, uid) {
                     style="height: 40px; margin-left: 50px; margin-right: 100px;">
             </a>
             <ul class="nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/bbs/list/:page"><i class="fas fa-home"></i>&nbsp;홈</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">로그아웃</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bbs/list/:page"><i class="fas fa-home"></i>&nbsp;홈</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/list"><i class="far fa-user"></i>&nbsp;유저정보</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                </li>
             </ul>
             <div class="navbar-text fixed-right" id="weather">
                 ${uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;

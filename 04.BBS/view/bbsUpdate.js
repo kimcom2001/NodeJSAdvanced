@@ -1,6 +1,6 @@
 const template = require('./template');
 
-module.exports.updateForm = function(uid, result) {
+module.exports.updateForm = function(uname, result) {
 
     return `
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ module.exports.updateForm = function(uid, result) {
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/bbs/list">
             <img src="/img/hoseo.png" alt="호서직업능력개발원"
                 style="height: 40px; margin-left: 50px; margin-right: 100px;">
         </a>
@@ -30,11 +30,14 @@ module.exports.updateForm = function(uid, result) {
                 <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/user/list"><i class="far fa-user"></i>&nbsp;유저정보</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/logout">로그아웃</a>
             </li>
         </ul>
         <div class="navbar-text fixed-right" id="weather">
-                ${result.uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
+                ${uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
             <i class="fas fa-cloud-sun"></i> 20&deg;C
         </div>
     </nav>
@@ -45,18 +48,16 @@ module.exports.updateForm = function(uid, result) {
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-                <form action="/user/update/${uid}" method="post">
+                <form action="/bbs/update/${result.bid}/uid/${result.uid}" method="post">
                     <div class="form-group"> 
-                        <label for="bid">작성자</label>
-                        <input type="text" class="form-control" id="bid" name="bid" value="${result.bid}>
                         <label for="title">제목</label>
-                        <input type="text" class="form-control" id="title" name="title" value="${result.title}>
+                        <input type="text" class="form-control" id="title" name="title" value="${result.title}">
                     </div>
                     <div class="form-group">
                         <label for="content">내용</label>
-                        <textarea class="form-control" rows="15" id="content" name="content" value="${result.content}></textarea>
+                        <textarea class="form-control" rows="15" id="content" name="content" value="${result.content}">${result.content}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="position: fixed; right: 270px; bottom: 180px;">작성</button>
+                    <button type="submit" class="btn btn-primary" style="position: fixed; right: 270px; bottom: 180px;" value="변경">작성</button>
                 </form>
             </div>
             <div class="col-2"></div>

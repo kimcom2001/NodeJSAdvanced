@@ -21,6 +21,18 @@ CREATE TABLE users(
  PRIMARY KEY (uid)
  );
 
+CREATE TABLE reply(
+`rid` INT NOT NULL AUTO_INCREMENT,
+`bid` INT NOT NULL
+`uid` VARCHAR(20) NOT NULL
+`content` VARCHAR(100),
+`regTime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+`isMine` INT DEFAULT 0
+);
+
+
+
+
 SELECT b.bid, b.uid, u.uname, b.title, b.content
   FROM bbs AS b
   JOIN users AS u

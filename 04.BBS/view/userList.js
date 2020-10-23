@@ -1,6 +1,17 @@
-module.exports = {
-    header:     function() {
-        return`
+const template = require('./template');
+
+module.exports.userListForm = function(uname, rows) {
+    let tableRow = [];
+    for (let row of rows) {
+        tableRow += `        
+                    <tr>
+                        <td style="text-align: center;"><a href="update/uid/${row.uid}">${row.uid}</a></td>
+                        <td style="text-align: center;">${row.uname}</td>
+                        <td style="text-align: center;">${row.tel}</td>
+                        <td style="text-align: center;">${row.email}</td>
+                    </tr>`;
+    }
+    return `
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,21 +46,28 @@ module.exports = {
             </li>
         </ul>
         <div class="navbar-text fixed-right" id="weather">
-            홍길동님 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fas fa-cloud-sun"></i> 20&deg;C
+            ${uname} 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-cloud-sun"></i> 20&deg;C
         </div>
     </nav>
-            `;
-    },
-    footer:     function() {
-        return `
-    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center fixed-bottom">
-        <span class="navbar-text">
-            Copyright &copy; 2020 Hoseo Institute of Big Data
-        </span>
-    </nav>
-</body>
-</html>
-        `;
-    }
+    <div style="margin-top: 80px;"></div>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 10%; text-align: center;">아이디</th>
+                        <th style="width: 25%; text-align: center;">이름</th>
+                        <th style="width: 25%; text-align: center;">이메일</th>
+                        <th style="width: 15%; text-align: center;">전화번호</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRow}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        ${template.footer()}
+    `;
 }

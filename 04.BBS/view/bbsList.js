@@ -9,6 +9,7 @@ module.exports.bbsListForm = function(uname, rows) {
                         <td><a href='/bbs/content/${row.bid}'>${row.title}</a></td>
                         <td style="text-align: center;">${row.uname}</td>
                         <td style="text-align: center;">${row.regDate}</td>
+                        <td style="text-align: center;">${row.viewCount}</td>
                     </tr>`;
     }
     return `
@@ -39,6 +40,9 @@ module.exports.bbsListForm = function(uname, rows) {
                 <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/user/list"><i class="far fa-user"></i>&nbsp;유저정보</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/logout">로그아웃</a>
             </li>
         </ul>
@@ -53,9 +57,10 @@ module.exports.bbsListForm = function(uname, rows) {
                 <thead>
                     <tr>
                         <th style="width: 10%; text-align: center;">번호</th>
-                        <th style="width: 25%; text-align: center;">제목</th>
+                        <th style="width: 30%; text-align: center;">제목</th>
                         <th style="width: 25%; text-align: center;">작성자</th>
                         <th style="width: 15%; text-align: center;">날짜</th>
+                        <th style="width: 10%; text-align: center;">조회수</th>
                     </tr>
                 </thead>
                 <tbody>
