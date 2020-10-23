@@ -77,7 +77,7 @@ module.exports = {
 
     getBbsList:     function(callback) {
         let conn = this.getConnection();
-        let sql = `SELECT b.bid, u.uname, b.title, DATE_FORMAT(b.regDate, '%Y.%m.%d') AS regDate, b.viewCount
+        let sql = `SELECT b.bid, u.uname, b.title, DATE_FORMAT(b.regDate, '%Y.%m.%d') AS regDate, b.viewCount, b.replyCount
         FROM bbs AS b
         JOIN users AS u
         ON b.uid=u.uid
@@ -219,6 +219,17 @@ module.exports = {
         let sql = `update users set pwd=?, uname=?, tel=?, email=? where uid=?;`;
         let conn = this.getConnection(); // 내부에 있으면 this를 사용해야 한다.
         conn.query(sql, params, function(error, fields) {
+            if (error)
+                console.log(error);
+            callback();
+        });
+        conn.end();
+    },
+
+    getUserDelete:     function(uid, callback) {
+        let conn = this.getConnection();
+        let sql = `delete from users where uid=?;`;
+        conn.query(sql, uid, (error, fields) => {
             if (error)
                 console.log(error);
             callback();

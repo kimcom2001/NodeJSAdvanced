@@ -6,7 +6,7 @@ module.exports.bbsListForm = function(uname, rows) {
         tableRow += `        
                     <tr>
                         <td style="text-align: center;">${row.bid}</td>
-                        <td><a href='/bbs/content/${row.bid}'>${row.title}</a></td>
+                        <td><a href='/bbs/content/${row.bid}'>${row.title}<span style="color: red;"><b>[${row.replyCount}]</b><span></a></td>
                         <td style="text-align: center;">${row.uname}</td>
                         <td style="text-align: center;">${row.regDate}</td>
                         <td style="text-align: center;">${row.viewCount}</td>
@@ -28,7 +28,7 @@ module.exports.bbsListForm = function(uname, rows) {
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/lonin">
             <img src="/img/hoseo.png" alt="호서직업능력개발원"
                 style="height: 40px; margin-left: 50px; margin-right: 100px;">
         </a>
@@ -40,7 +40,7 @@ module.exports.bbsListForm = function(uname, rows) {
                 <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/list"><i class="far fa-user"></i>&nbsp;유저정보</a>
+                <a class="nav-link" href="/user/dispatch"><i class="far fa-user"></i>&nbsp;유저정보</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">로그아웃</a>

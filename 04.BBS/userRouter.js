@@ -73,5 +73,39 @@ uRouter.post('/update/uid/:uid', ut.isLoggedIn, (req, res) => {
     }
 });
 
+uRouter.get('/dispatch', ut.isLoggedIn, (req, res) => {
+    
+    if ('admin' === req.session.uid) { // 로그인한 사용자의 한에서 권한 부여
+        dm.getUserList(rows => {
+            const view = require('./view/userList');
+            let html = view.userListForm(req.session.uname, rows);
+            res.send(html);
+        });
+    } else {
+        dm.getUserInfo(req.session.uid, (result) => {
+            const view = require('./view/userUpdate');
+            html = view.updateForm(result);
+            res.send(html);
+        });
+    }
+});
+
+uRouter.get('/delete/uid/:uid', ut.isLoggedIn, (req, res) => {
+ 
+    let uid = req.params.uid;
+    if ('admin' === req.session.uid) {
+        let view = require('./view/userDelete');
+        let html = view.userdeleteForm(uid);
+        res.send(html);
+    };
+});
+
+uRouter.get('/deleteConfirm/:uid', ut.isLoggedIn, (req, res) => {
+    
+    let uid = req.params.uid;
+    dm.getUserDelete(uid, () => {
+        res.redirect('/user/dispatch');
+    });
+});
 
 module.exports = uRouter;

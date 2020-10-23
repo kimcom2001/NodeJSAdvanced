@@ -29,7 +29,7 @@ module.exports.createForm = function (uname, uid) {
                     <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/list"><i class="far fa-user"></i>&nbsp;유저정보</a>
+                    <a class="nav-link" href="/user/dispatch"><i class="far fa-user"></i>&nbsp;유저정보</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">로그아웃</a>

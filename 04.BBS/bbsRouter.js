@@ -106,7 +106,7 @@ bRouter.get('/update/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
 
 bRouter.post('/update/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
   
-    let bid = parseInt(req.params.bid);
+    let bid = parseInt(req.params.bid); // req.body.bid로 하면 /update/:bid/uid/:uid에서 /update로 간결하게 쓸 수 있다.
     let title = req.body.title;
     let content = req.body.content;
     let params = [title, content, bid];

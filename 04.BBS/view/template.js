@@ -1,5 +1,5 @@
 module.exports = {
-    header:     function() {
+    header:     function(uname) {
         return`
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,7 +35,7 @@ module.exports = {
             </li>
         </ul>
         <div class="navbar-text fixed-right" id="weather">
-            홍길동님 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
+            ${uname}님 반갑습니다.&nbsp;&nbsp;&nbsp;&nbsp;
         <i class="fas fa-cloud-sun"></i> 20&deg;C
         </div>
     </nav>

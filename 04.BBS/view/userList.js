@@ -9,6 +9,7 @@ module.exports.userListForm = function(uname, rows) {
                         <td style="text-align: center;">${row.uname}</td>
                         <td style="text-align: center;">${row.tel}</td>
                         <td style="text-align: center;">${row.email}</td>
+                        <td style="text-align: center;"><a href="/user/delete/uid/${row.uid}">삭제</a></td>
                     </tr>`;
     }
     return `
@@ -39,7 +40,7 @@ module.exports.userListForm = function(uname, rows) {
                 <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/list"><i class="far fa-user"></i>&nbsp;유저정보</a>
+                <a class="nav-link" href="/user/dispatch"><i class="far fa-user"></i>&nbsp;유저정보</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">로그아웃</a>
@@ -56,9 +57,10 @@ module.exports.userListForm = function(uname, rows) {
                 <thead>
                     <tr>
                         <th style="width: 10%; text-align: center;">아이디</th>
-                        <th style="width: 25%; text-align: center;">이름</th>
+                        <th style="width: 35%; text-align: center;">이름</th>
                         <th style="width: 25%; text-align: center;">이메일</th>
                         <th style="width: 15%; text-align: center;">전화번호</th>
+                        <th style="width: 15%; text-align: center;">강퇴여부</th>
                     </tr>
                 </thead>
                 <tbody>
