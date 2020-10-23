@@ -15,6 +15,12 @@ module.exports.registForm = function () {
         <script src="/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="/img/hoseo.png" alt="호서직업능력개발원"
+                style="height: 40px; margin-left: 50px; margin-right: 100px;">
+        </a>
+    </nav>
     <div class="container" style="margin-top: 90px;">
         <h3 style="text-align: center; margin-top: 25px;">회원 가입</h3>
         <hr>

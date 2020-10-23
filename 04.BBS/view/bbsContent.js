@@ -1,4 +1,4 @@
-
+const template = require('./template');
 
 module.exports.contentForm = function(uname, result, replies) {
     
@@ -72,7 +72,7 @@ module.exports.contentForm = function(uname, result, replies) {
             <hr>
             <div class="row">
                 <div class="col-1"></div>
-                <div class="col-8">
+                <div class="col-9">
                     <p>${result.content}</p>
                 </div>
                 <div class="col-2">
@@ -82,21 +82,27 @@ module.exports.contentForm = function(uname, result, replies) {
             </div>
         </div>
             <hr>
-            <div class="col-10">
-                ${cards}
-                <form class="form-inline" action="/bbs/reply/${result.uid}/bid/${result.bid}" method="post">
-                    <input type="hidden" name="bid" value="${result.bid}">
-                    <input type="hidden" name="uid" value="${result.uid}">
-                    <label for="content" class="ml-5 mt-3 mr-3">댓글</label>
-                    <textarea class="ml-3 mt-3 mr-3" id="content" name="content" rows="3" cols="80"></textarea>
-                    <button type="submit" class="btn btn-primary ml-3 mt-3 mr-5">등록</button>
-                </form>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-9">
+                    ${cards}
+                    <form class="form-inline" action="/bbs/reply/${result.uid}/bid/${result.bid}" method="post">
+                        <input type="hidden" name="bid" value="${result.bid}">
+                        <input type="hidden" name="uid" value="${result.uid}">
+                        <label for="content" class="ml-5 mt-3 mr-3">댓글</label>
+                        <textarea class="ml-3 mt-3 mr-3" id="content" name="content" rows="3" cols="80"></textarea>
+                        <button type="submit" class="btn btn-primary ml-3 mt-3 mr-5">등록</button>
+                    </form>
+                </div>
+                <div class="col-1"></div>
             </div>
-            <div class="col-1"></div>
         </div>
     </div>
     </form>
-</body>
-</html>
+    
+
+    ${template.footer()}
+
+
 `;
 }

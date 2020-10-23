@@ -43,7 +43,7 @@ module.exports.updateForm = function(uname, result) {
     </nav>
     <div class="container">
         <div>
-            <h3 style="text-align: center; margin-top: 80px;">게시글 작성</h3>
+            <h3 style="text-align: center; margin-top: 80px;">게시글 수정</h3>
         </div>
         <div class="row">
             <div class="col-2"></div>

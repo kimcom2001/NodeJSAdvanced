@@ -67,14 +67,27 @@ bRouter.get('/delete/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
  
     let bid = parseInt(req.params.bid);
     if (req.params.uid === req.session.uid) {
-        dm.deleteBbs(bid, () => {
-            res.redirect('/bbs/list/:page');
-        });
+        let view = require('./view/bbsDelete');
+        let html = view.delete(bid);
+        res.send(html);
     } else {
         let html = am.alertMsg(`삭제 권한이 없습니다.`, '/bbs/list/:page'); // 로그인은 이미 되어 있으므로 루트로 보내준다.
         res.send(html);
     }
 });
+
+bRouter.get('/deleteConfirm/:bid', ut.isLoggedIn, (req, res) => {
+    
+    let bid = req.params.bid;
+    dm.deleteBbs(bid, () => {
+        res.redirect('/bbs/list/:page');
+    });
+});
+
+
+
+
+
 
 bRouter.get('/update/:bid/uid/:uid', ut.isLoggedIn, (req, res) => {
     
