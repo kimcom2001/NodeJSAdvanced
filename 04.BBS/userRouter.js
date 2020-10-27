@@ -1,6 +1,6 @@
 const express = require('express');
 const ut = require('./util');
-const dm = require('./db/db-module');
+const dm = require('./db/db-Module');
 const am = require('./view/alertMsg');
 const uRouter = express.Router();
 
@@ -65,7 +65,7 @@ uRouter.post('/update/uid/:uid', ut.isLoggedIn, (req, res) => {
     if(pwd === pwd2) {          // 패스워드와 패스워드 확인이 같은 경우, 피시방의 경우 현재 비밀번호 확인을 한번 더 한다.
         let params = [pwdHash, uname, tel, email, uid];
         dm.getUpdateUser(params, () => {
-            res.redirect('/');
+            res.redirect('/bbs/list/:page');
         });
     } else {            // 패스워드 입력이 잘못된 경우
         let html = am.alertMsg(`변경 실패: 패스워드가 일치하지 않습니다.`, `/update/${uid}`);

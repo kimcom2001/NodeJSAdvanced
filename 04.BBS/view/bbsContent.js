@@ -42,7 +42,7 @@ module.exports.contentForm = function(uname, result, replies) {
                 <a class="nav-link" href="/bbs/list/:page"><i class="fas fa-home"></i>&nbsp;홈</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
+                <a class="nav-link" href="/bbs/create/:uid"><i class="far fa-file"></i>&nbsp;새글&nbsp;&nbsp;</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/user/dispatch"><i class="far fa-user"></i>&nbsp;유저정보</a>
@@ -76,8 +76,11 @@ module.exports.contentForm = function(uname, result, replies) {
                     <p>${result.content}</p>
                 </div>
                 <div class="col-2">
-                    <a href="/bbs/update/${result.bid}/uid/${result.uid}">수정</a>
-                    <a href="/bbs/delete/${result.bid}/uid/${result.uid}">삭제</a>
+                        <a href="/bbs/update/${result.bid}/uid/${result.uid}"><i class="fas fa-edit"></i>&nbsp;수정&nbsp;&nbsp;</a>
+                        <a href="/bbs/delete/${result.bid}/uid/${result.uid}"><i class="fas fa-trash"></i>&nbsp;삭제</a>
+                        <br>
+                        <br>
+                        <a href="/bbs/list/:page">목록</a>
                 </div>
             </div>
         </div>

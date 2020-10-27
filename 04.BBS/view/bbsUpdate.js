@@ -27,7 +27,7 @@ module.exports.updateForm = function(uname, result) {
                 <a class="nav-link" href="/bbs/list/:page"><i class="fas fa-home"></i>&nbsp;홈</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/bbs/create/:uid"><i class="fas fa-edit"></i>&nbsp;새글</a>
+                <a class="nav-link" href="/bbs/create/:uid"><i class="far fa-file"></i>&nbsp;새글&nbsp;&nbsp;</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/user/dispatch"><i class="far fa-user"></i>&nbsp;유저정보</a>
